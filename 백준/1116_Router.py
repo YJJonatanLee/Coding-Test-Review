@@ -1,18 +1,21 @@
 from collections import deque
 
-N = 5
-packets = deque([1, 2, 0, 3, 4, 0, 5, 6, 0, 0, -1])
+N = int(input())
+buffer = deque()
 
-router = deque()
-
-while packets[0] != -1:
-    p = packets.popleft()
-    if p != 0:
-        if len(router) >= N:
+while True:
+    packet = int(input())
+    if packet == -1:
+        break
+    if packet != 0:
+        if len(buffer) >= N:
             continue
         else:
-            router.append(p)
+            buffer.append(packet)
     else:
-        router.popleft()
+        buffer.popleft()
 
-print(*router)
+if buffer:
+    print(*buffer)
+else:
+    print('empty')
